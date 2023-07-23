@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Card from './components/Card';
+import Preline from './components/Preline';
+
 
 function App() {
+
+  const [loading, setLoading] = useState(true);
+
+  // Simulate loading time using useEffect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000); // Simulate a 3-second loading time
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container mx-auto mt-8">
+        <p className='text-red-500 font-semibold text-center text-xl'>Skeleton : 1</p>
+        <Card isLoading={loading}/>
+      </div>
+      <div className="container mx-auto mt-8">
+        <p className='text-red-500 font-semibold text-center text-xl'>Skeleton : 2</p>
+        <Preline title="Card Title">
+          <p>Card content</p>
+        </Preline>
+      </div>
+    </>
+
   );
 }
 
